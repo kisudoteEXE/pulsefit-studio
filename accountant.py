@@ -1,5 +1,3 @@
-# Case 1: PulseFit Studio Class Booking System
-# Role: Accountant
 
 def read_all_payments():
     payments = []
@@ -10,7 +8,6 @@ def read_all_payments():
                 if line != "":
                     payments.append(line.split(","))
     except FileNotFoundError:
-        # If the file does not exist yet, return an empty list
         payments = []
     return payments
 
@@ -28,7 +25,6 @@ def generate_next_payment_id():
 
     next_id = highest_id + 1
 
-    # Format the ID with leading zeros using basic if-else logic
     if next_id < 10:
         return "P00" + str(next_id)
     elif next_id < 100:
@@ -44,7 +40,6 @@ def record_payment():
     member_id = input("Enter Member ID (e.g., M001): ").strip()
     booking_id = input("Enter Booking ID (e.g., B001): ").strip()
 
-    # Amount validation
     while True:
         amount_input = input("Enter payment amount: ").strip()
         try:
@@ -58,7 +53,7 @@ def record_payment():
 
     date = input("Enter payment date (YYYY-MM-DD): ").strip()
 
-    # Status validation
+
     while True:
         status = input("Enter payment status (Paid/Outstanding): ").strip()
         if status == "Paid" or status == "Outstanding":
@@ -66,7 +61,6 @@ def record_payment():
         else:
             print("Invalid status. Please enter either 'Paid' or 'Outstanding'.")
 
-    # Save to file
     with open("payments.txt", "a") as file:
         file.write(payment_id + "," + member_id + "," + booking_id + "," + str(round(amount, 2)) + "," + date + "," + status + "\n")
 
@@ -98,7 +92,6 @@ def update_payment_status():
             break
 
     if found:
-        # Overwrite file with updated list
         with open("payments.txt", "w") as file:
             for record in payments:
                 file.write(record[0] + "," + record[1] + "," + record[2] + "," + record[3] + "," + record[4] + "," + record[5] + "\n")
@@ -128,7 +121,6 @@ def monthly_summary():
     for record in records:
         if len(record) >= 6 and record[5] == "Paid":
             date_str = record[4]
-            # Assuming format YYYY-MM-DD, month is at index 5 to 7
             if len(date_str) >= 7:
                 month = date_str[5:7]
                 amount = float(record[3])
@@ -185,6 +177,5 @@ def accountant_menu():
         else:
             print("Invalid selection. Please choose a valid option (1-6).")
 
-# Program entry point
 if __name__ == "__main__":
     accountant_menu()
