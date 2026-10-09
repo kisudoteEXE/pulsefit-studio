@@ -64,16 +64,11 @@ def view_classes():
       print(f"{class_code:<6}{name:<15}{trainer:<15}{time_slot:<12}{total_pax:<10}{booked:<8}")
    print()
 
-def update_class():
-   classes = read_classes()
-   view_classes()
-   class_code = input("Enter Class ID for update: ")
-
 def find_class_by_code (classes, class_code):
       for c in classes:
          if c[0] == class_code:
             return c
-         return None
+      return None
 
 def update_class():
    classes = read_classes()
