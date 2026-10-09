@@ -102,7 +102,7 @@ def update_class():
       if total_pax.isdigit() and int(total_pax) >= booked:
          target[4] = total_pax
       else:
-         print ("That won't do. Must be a num >= current bookings 9{booked}. Old value saved.")
+         print (f"That won't do. Must be a num >= current bookings {booked}. Old value saved.")
 
    write_classes(classes)
    print("\nClass updated successfully. \n")
